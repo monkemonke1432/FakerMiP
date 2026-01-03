@@ -24,3 +24,12 @@ jobs:
           export PATH=$PATH:~/.local/bin
           # Auto-accept licenses and build
           yes | buildozer -v android debug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MiP-Package
+
+          path: |
+            bin/*.apk
+            **/.buildozer/android/platform/build/dists/*/build/outputs/apk/debug/*.apk
