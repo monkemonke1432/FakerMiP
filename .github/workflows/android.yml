@@ -7,6 +7,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
       - name: Install Dependencies
         run: |
           sudo apt update
@@ -16,5 +22,5 @@ jobs:
       - name: Build with Buildozer
         run: |
           export PATH=$PATH:~/.local/bin
-          # This command auto-accepts all Android SDK licenses
+          # Auto-accept licenses and build
           yes | buildozer -v android debug
