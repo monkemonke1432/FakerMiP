@@ -1,0 +1,20 @@
+name: Build MiP APK
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build with Buildozer
+        uses: ArtemSerebriakov/buildozer-action@v1
+        with:
+          buildozer_version: master
+          python_version: 3.11
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MiP-Package
+          path: bin/*.apk
